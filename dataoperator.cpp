@@ -44,11 +44,7 @@ QSqlQuery dataOperator::getNewQuery(const userInfo& user, const queryMode mode, 
             query.bindValue(":id", user.id);
             query.bindValue(":error_count", user.errorCount);
             break;
-        case queryMode::userExistCheck:
-            query.prepare("select * from users where account = :account;");
-            query.bindValue(":account", user.account);
-            break;
-        case queryMode::getUserInfo:
+        case queryMode::getUserInfo: case queryMode::userExistCheck:
             query.prepare("select * from users where account = :account;");
             query.bindValue(":account", user.account);
             break;
