@@ -1,9 +1,12 @@
 #include "dataoperator.h"
 #include "libbcrypt/include/bcrypt/BCrypt.hpp"
 #include <QSqlError>
+#include <QStandardPaths>
 dataOperator::dataOperator() {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("database.db");
+    //找一个可以存储数据库的位置
+    QString path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    db.setDatabaseName(path+"database.db");
     initDatabase();
 }
 
